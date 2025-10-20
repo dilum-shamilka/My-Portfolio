@@ -402,6 +402,30 @@ footer article>figure:first-child {
     position: relative;
 }
 
+/* Re-adding the missing double line styles for the footer separator */
+footer article > figure:first-child::before,
+footer article > figure:first-child::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 1px;
+    background-color: var(--primary-color);
+}
+
+footer article > figure:first-child::before {
+    top: 0;
+    box-shadow: 0 5px 0 0 var(--primary-color);
+}
+
+footer article > figure:first-child::after {
+    bottom: 0;
+    box-shadow: 0 -5px 0 0 var(--primary-color);
+}
+
+
 footer h3 {
     font-size: 2.5em;
     color: var(--secondary-color);
@@ -426,13 +450,6 @@ footer figure:last-child div:first-child p:first-child {
     color: var(--secondary-color);
     font-size: 1em;
 }
-
-/* Original style for the email link div (removed) */
-/* footer figure:last-child div:nth-child(2) {
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.1em;
-} */
 
 /* NEW STYLES FOR GREEN CONTACT BUTTON */
 footer figure:last-child div:last-child a {
@@ -465,37 +482,60 @@ footer figure:last-child div:last-child {
 }
 
 /*
-| 5. MEDIA QUERIES (RESPONSIVENESS)
+| 5. MEDIA QUERIES (ENHANCED RESPONSIVENESS)
 */
-@media (max-width: 900px) {
 
-    /* The contact form CSS wasn't used, but here's an example for the Services figures */
-    main>section:nth-child(2) article:last-child {
-        justify-content: space-around;
+/* Laptop Large (Max 1440px) - Handled well by base styles */
+@media (max-width: 1440px) {
+    /* No major changes needed */
+}
+
+/* Laptop (Max 1024px) */
+@media (max-width: 1024px) {
+    section {
+        padding: 40px 6%;
     }
-
-    main>section:nth-child(2) figure {
-        width: calc(50% - 15px);
+    nav {
+        padding: 15px 6%;
     }
+}
 
-    main>section:nth-child(3) article:last-child {
-        justify-content: space-around;
-    }
-
-    main>section:nth-child(3) figure {
-        width: calc(50% - 15px);
-    }
-
+/* Tablet (Max 768px) */
+@media (max-width: 768px) {
+    /* Intro Section: Stack image and text */
     main>section:nth-child(1) {
         flex-direction: column;
         text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
-
     main>section:nth-child(1) article:last-child {
         justify-content: center;
+        width: 100%; /* Ensure button group is centered */
     }
 
+    /* Services/Projects: Switch to 2 columns */
+    main>section:nth-child(2) article:last-child {
+        justify-content: space-between;
+    }
+    main>section:nth-child(2) figure {
+        width: calc(50% - 15px); /* Two columns with 30px gap */
+        min-width: 0;
+    }
+    main>section:nth-child(3) article:last-child {
+        justify-content: space-between;
+    }
+    main>section:nth-child(3) figure {
+        width: calc(50% - 15px); /* Two columns with 30px gap */
+        min-width: 0;
+    }
 
+    /* Assignment Grid: Allow smaller columns */
+    main>section:nth-child(4) article {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Footer: Stacked content */
     footer article>figure:last-child {
         flex-direction: column;
         text-align: center;
@@ -503,27 +543,86 @@ footer figure:last-child div:last-child {
     }
 }
 
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    nav>div:last-child a {
-        margin-left: 15px;
-    }
-
+/* Mobile Large (Max 425px) */
+@media (max-width: 425px) {
     section {
         padding: 30px 5%;
     }
 
+    /* Navigation Bar: Stacked items */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px 5%;
+    }
+
+    nav>div:last-child a {
+        margin-left: 15px;
+        font-size: 1em;
+    }
+
+    /* Intro Section: Smaller elements */
     main>section:nth-child(1) h1 {
         font-size: 2.5em;
     }
+    main>section:nth-child(1) img {
+        width: 200px;
+        height: 200px;
+    }
+    main>section:nth-child(1) input[type="button"] {
+        /* Stack buttons by making them full width */
+        width: 100%;
+        margin-right: 0;
+        margin-top: 10px;
+    }
 
-    main>section:nth-child(2) figure,
+    /* Services/Projects: Single column layout */
+    main>section:nth-child(2) figure {
+        width: 100%;
+        min-width: unset;
+    }
     main>section:nth-child(3) figure {
         width: 100%;
+        min-width: unset;
+    }
+}
+
+
+/* Mobile Medium (Max 375px) */
+@media (max-width: 375px) {
+    /* Reduce H1 font size further */
+    main>section:nth-child(1) h1,
+    main>section:nth-child(2) article:first-child h1,
+    main>section:nth-child(3) article:first-child h1 {
+        font-size: 2em;
+    }
+
+    /* Reduce Services/Projects card padding */
+    main>section:nth-child(2) figure {
+        padding: 20px;
+    }
+    main>section:nth-child(3) figure>div:first-child {
+        padding: 15px;
+    }
+}
+
+
+/* Mobile Small (Max 320px) */
+@media (max-width: 320px) {
+    /* Final size adjustments for navigation links */
+    nav>div:last-child a {
+        margin-left: 10px;
+        font-size: 0.9em;
+    }
+
+    /* Footer H3 text size */
+    footer h3 {
+        font-size: 2em;
+    }
+
+    /* Assignment Grid: Force single column if necessary (250px min-width is too large for 320px) */
+    main>section:nth-child(4) article {
+        grid-template-columns: 1fr;
     }
 }
