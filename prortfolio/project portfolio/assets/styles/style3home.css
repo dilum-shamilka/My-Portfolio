@@ -22,6 +22,12 @@ body {
     line-height: 1.6;
 }
 
+h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+
 section {
     padding: 50px 8%;
     max-width: 1400px;
@@ -402,7 +408,8 @@ footer article>figure:first-child {
     position: relative;
 }
 
-/* Re-adding the missing double line styles for the footer separator */
+/* * The following code block was REMOVED/COMMENTED OUT to eliminate the double green line.
+ *
 footer article > figure:first-child::before,
 footer article > figure:first-child::after {
     content: '';
@@ -424,6 +431,7 @@ footer article > figure:first-child::after {
     bottom: 0;
     box-shadow: 0 -5px 0 0 var(--primary-color);
 }
+*/
 
 
 footer h3 {
@@ -450,6 +458,23 @@ footer figure:last-child div:first-child p:first-child {
     color: var(--secondary-color);
     font-size: 1em;
 }
+
+/* --- NEW CODE TO MAKE GMAIL GREEN --- */
+footer figure:last-child div:nth-child(2) {
+    /* Target the email address text */
+    color: var(--primary-color); /* Apply the signature green color */
+    font-weight: bold; /* Make it bold to stand out more */
+    font-size: 1.1em; /* Make it slightly larger */
+    transition: color 0.3s;
+}
+
+/* Optional: A subtle hover effect */
+footer figure:last-child div:nth-child(2):hover {
+    color: var(--secondary-color); /* Change to white on hover */
+    cursor: pointer;
+}
+/* ----------------------------------- */
+
 
 /* NEW STYLES FOR GREEN CONTACT BUTTON */
 footer figure:last-child div:last-child a {
@@ -570,9 +595,15 @@ footer figure:last-child div:last-child {
         width: 200px;
         height: 200px;
     }
+    main>section:nth-child(1) article:last-child {
+        /* This container holds the buttons */
+        flex-direction: column;
+        align-items: center; /* Center buttons horizontally */
+    }
     main>section:nth-child(1) input[type="button"] {
         /* Stack buttons by making them full width */
         width: 100%;
+        max-width: 300px; /* Optional: cap the width on small screens */
         margin-right: 0;
         margin-top: 10px;
     }
