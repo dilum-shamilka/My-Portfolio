@@ -130,6 +130,8 @@ section:nth-child(3) article figure:first-child {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    /* FIX: Center the text "make something amazing" */
+    text-align: center;
 }
 
 section:nth-child(3) article figure:first-child a {
