@@ -266,9 +266,18 @@ section:nth-child(3) figure > div > div:last-child p:last-child {
     font-size: 0.9em;
 }
 
+/*
+ * ADDITION FOR WORK EXPERIENCE SECTION
+ */
+#work-experience h1 {
+    /* Set the color to the primary green color */
+    color: var(--primary-color);
+    text-align: center; /* Center the new heading */
+}
+
 
 /*
-6. FOOTER SECTION (UPDATED FOR DOUBLE GREEN LINES)
+ 6. FOOTER SECTION (UPDATED FOR DOUBLE GREEN LINES)
 
 */
 footer {
